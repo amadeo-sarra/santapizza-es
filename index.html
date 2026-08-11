@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>santapizza.es — Dominio en venta / Domain for sale</title>
+<meta name="description" content="El dominio santapizza.es está en venta. This domain is for sale.">
+<meta name="robots" content="index, follow">
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #ffffff;
+    --ink: #14161a;
+    --muted: #6b7280;
+    --accent: #d64545;
+    --ring: rgba(214, 69, 69, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at 50% 0%, #1b1e26 0%, #0f1115 60%);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    max-width: 480px;
+    width: 100%;
+    padding: 48px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin: 0 0 18px;
+    word-break: break-word;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 28px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    gap: 4px;
+    background: #f2f3f5;
+    border-radius: 999px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  .lang-toggle button {
+    border: none;
+    background: transparent;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .lang-toggle button.active {
+    background: #14161a;
+    color: #fff;
+  }
+  .cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 8px 20px var(--ring);
+  }
+  .cta:hover { transform: translateY(-1px); }
+  .email-box {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    word-break: break-all;
+  }
+  .email-box a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+  }
+  .footnote {
+    margin-top: 32px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="eyebrow" data-i18n="eyebrow">DOMINIO EN VENTA</p>
+    <h1>santapizza.es</h1>
+    <p class="subtitle" data-i18n="subtitle">Este dominio está disponible para su compra. Si te interesa, ponte en contacto.</p>
+
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" class="active">ES</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+
+    <div>
+      <button type="button" class="cta" id="revealBtn" data-i18n="cta">Mostrar email de contacto</button>
+      <div class="email-box" id="emailBox" hidden></div>
+    </div>
+
+    <p class="footnote" data-i18n="footnote">Sin formularios ni intermediarios. Respuesta directa por email.</p>
+  </main>
+
+<script>
+  var dict = {
+    es: {
+      eyebrow: "DOMINIO EN VENTA",
+      subtitle: "Este dominio está disponible para su compra. Si te interesa, ponte en contacto.",
+      cta: "Mostrar email de contacto",
+      footnote: "Sin formularios ni intermediarios. Respuesta directa por email."
+    },
+    en: {
+      eyebrow: "DOMAIN FOR SALE",
+      subtitle: "This domain is available for purchase. If you're interested, get in touch.",
+      cta: "Show contact email",
+      footnote: "No forms, no middlemen. Direct email reply."
+    }
+  };
+
+  var buttons = document.querySelectorAll(".lang-toggle button");
+  var revealBtn = document.getElementById("revealBtn");
+  var currentLang = "es";
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      el.textContent = dict[lang][el.getAttribute("data-i18n")];
+    });
+    buttons.forEach(function (b) {
+      b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+    });
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      applyLang(b.getAttribute("data-lang"));
+    });
+  });
+
+  var browserLang = (navigator.language || "es").toLowerCase().indexOf("en") === 0 ? "en" : "es";
+  applyLang(browserLang);
+
+  // Email assembled only at click time, never present as plain text/mailto in the HTML source.
+  var userPart = "amadeo.sarra";
+  var domainPart = "gmail.com";
+  var at = String.fromCharCode(64);
+
+  revealBtn.addEventListener("click", function () {
+    var email = userPart + at + domainPart;
+    var box = document.getElementById("emailBox");
+    var link = document.createElement("a");
+    link.href = "mailto:" + email + "?subject=" + encodeURIComponent("Interesado en santapizza.es");
+    link.textContent = email;
+    box.innerHTML = "";
+    box.appendChild(link);
+    box.hidden = false;
+    revealBtn.hidden = true;
+  });
+</script>
+</body>
+</html>
+
